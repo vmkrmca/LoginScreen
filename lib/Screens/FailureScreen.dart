@@ -18,7 +18,7 @@ class _FailureScreenState extends State<FailureScreen> {
       body: Container(
         width: double.infinity,
           color: Colors.redAccent,
-          child: const Center(child: Text("Welcome to Failure Screen",style: TextStyle(fontSize: 19,color: Colors.redAccent),),)),
+          child: const Center(child: Text("Welcome to Failure Screen",style: TextStyle(fontSize: 19,color: Colors.white),),)),
     );
   }
 }

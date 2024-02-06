@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 15,
           ),
           signInButton(
-              mobileNumberController.text, passwordController.text, context),
+              mobileNumberController, passwordController, context),
           const SizedBox(
             height: 15,
           ),
@@ -151,18 +151,28 @@ Widget inputFieldText(TextEditingController textEditingController,
   );
 }
 
-Widget signInButton(
-  String mobileNumber,
-  String password,
-  BuildContext context,
+Widget signInButton(TextEditingController mobileNumber, TextEditingController password, BuildContext context,
 ) {
   return ElevatedButton(
     onPressed: () {
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const DashBoardScreen()),
-      );
+      if(mobileNumber.text.isNotEmpty && password.text.isNotEmpty) {
+        if(mobileNumber.text == "7022503201" && password.text == "Mani@123"){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DashBoardScreen()),
+          );
+        }else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FailureScreen()),
+          );
+        }
+
+      }else {
+        print("Please Enter Data");
+      }
+
     },
     child: const Text(
       "SignIn",
