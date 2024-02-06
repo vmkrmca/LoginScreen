@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'Screens/DashBoardScreen.dart';
+import 'Screens/FailureScreen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -58,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(
             height: 15,
           ),
-          signInButton(),
+          signInButton(
+              mobileNumberController.text, passwordController.text, context),
           const SizedBox(
             height: 15,
           ),
@@ -88,10 +92,9 @@ Widget socialMediaLogins() {
         ),
         Expanded(
           child: InkWell(
-          onTap: () {
-
-            print("I Clicked on Apple Icon");
-          },
+            onTap: () {
+              print("I Clicked on Apple Icon");
+            },
             child: Image.asset(
               'assets/images/apple.png',
               height: 150,
@@ -102,7 +105,6 @@ Widget socialMediaLogins() {
         Expanded(
           child: InkWell(
             onTap: () {
-
               print("I Clicked on Facebook Icon");
             },
             child: Image.asset(
@@ -127,12 +129,12 @@ Widget profilePicture() {
   );
 }
 
-Widget inputFieldText(TextEditingController mobileNumberController,
+Widget inputFieldText(TextEditingController textEditingController,
     String hintText, Icon icon, TextInputType textData, bool isObscureText) {
   return Container(
     margin: const EdgeInsets.only(top: 15, left: 20, right: 20),
     child: TextField(
-      controller: mobileNumberController,
+      controller: textEditingController,
       keyboardType: textData,
       obscureText: isObscureText,
       decoration: InputDecoration(
@@ -149,9 +151,19 @@ Widget inputFieldText(TextEditingController mobileNumberController,
   );
 }
 
-Widget signInButton() {
+Widget signInButton(
+  String mobileNumber,
+  String password,
+  BuildContext context,
+) {
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const DashBoardScreen()),
+      );
+    },
     child: const Text(
       "SignIn",
       style: TextStyle(fontSize: 16, color: Colors.black),
